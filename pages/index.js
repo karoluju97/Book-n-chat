@@ -8,6 +8,7 @@ const Index = () => {
     const submit = (e) => {
         e.preventDefault()
         firebase.auth().signInWithEmailAndPassword(e.target.email.value, e.target.password.value).then((user) => {
+            localStorage.setItem("id",user.user.uid) 
             router.push("/homePage")
         }).catch((err) => {
             console.log(err)
