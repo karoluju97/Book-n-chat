@@ -1,16 +1,37 @@
-import { Container, Row, Col, Navbar } from "react-bootstrap"
+import { Container, Row, Col, Navbar, ListGroup, Form, Button } from "react-bootstrap"
 import firebase from "../firebase.js"
 import { useEffect, useState } from "react"
 import Post from "../components/post.js"
 import Profile from "../components/profile.js"
 import styles from "../styles/Home.module.css"
 import PostFrom from "../components/postForm.js"
+import GlobalMessage from "../components/globalMessage.js"
+import { v4 as uuid } from "uuid"
 
 const Homepage = () => {
     const [state, setState] = useState({
         user: { username: "" },
-        posts: []
+        posts: [],
+        messages: []
     })
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        let message = e.target.messaging.value;
+        firebase.database().ref(`messages/${uuid()}`).set({
+            text: message,
+            id: uuid(),
+            user: state.user,
+            timestamp: Date.now()
+        })
+        e.target.messaging.value = ""
+    }
+
+    useEffect(() => {
+        let element = document.getElementById("chat");
+        element.scrollTop = element.scrollHeight;
+    }, [state.messages])
+
     useEffect(() => {
         const id = localStorage.getItem("id")
         firebase.database().ref(`users/${id}`).get().then((user) => {
@@ -25,6 +46,21 @@ const Homepage = () => {
                         posts: result,
                         user: user.val()
                     }))
+                } else {
+                    console.log("No data available");
+                }
+            })
+            firebase.database().ref("messages").on("value", (snapshot) => {
+                if (snapshot.exists()) {
+                    const value = snapshot.val()
+                    let result = Object.keys(value).map((key) => {
+                        return { ...value[key], id: key }
+                    });
+                    setState(prevState => ({
+                        ...prevState,
+                        messages: [...result]
+                    }))
+                    console.log(result)
                 } else {
                     console.log("No data available");
                 }
@@ -46,8 +82,9 @@ const Homepage = () => {
                     <Col sm="6" className={styles.postList}>
                         <Container>
                             <PostFrom username={state.user.username}></PostFrom>
-                            {state.posts.map((post) => {
-                                console.log(post)
+                            {state.posts.sort((a,b)=>{
+                                return b.timestamp-a.timestamp
+                            }).map((post) => {
                                 return (
                                     <Post key={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
                                 )
@@ -55,7 +92,27 @@ const Homepage = () => {
                         </Container>
                     </Col>
                     <Col sm="3">
-                        Chaturbate
+                        <ListGroup className={styles.chatList} id="chat">
+                            {state.messages.sort((a,b)=>{
+                                return a.timestamp-b.timestamp
+                            }).map((message) => {
+                                return (
+                                    <GlobalMessage key={message.id} text={message.text} user={message.user}>
+
+                                    </GlobalMessage>
+                                )
+                            })}
+                        </ListGroup>
+                        <Form onSubmit={sendMessage}>
+                            <Row>
+                                <Form.Control type="text" name="messaging">
+
+                                </Form.Control>
+                                <Button type="submit">
+                                    Send
+                                </Button>
+                            </Row>
+                        </Form>
                     </Col>
                 </Row>
             </Container>

@@ -8,7 +8,8 @@ const PostFrom = ({ username }) => {
         firebase.database().ref(`posts/${uuid()}`).set({
             username,
             bookTitle: e.target.bookTitle.value,
-            description: e.target.description.value
+            description: e.target.description.value,
+            timestamp: Date.now()
         })
         e.target.bookTitle.value  = ""
         e.target.description.value  = ""

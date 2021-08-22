@@ -9,3 +9,11 @@
 .mainContent{
   /* max-height: 90%; */
 }
+
+.chatList{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-height:80vh;
+  height :80vh;
+  overflow-y: auto;
+}
