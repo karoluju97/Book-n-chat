@@ -1,5 +1,11 @@
 .postList{
   margin-top: 20px;
-  max-height:55%;
-  overflow-y: scroll;
+  max-height:90vh;
+  height :90vh;
+  overflow-y: auto;
+  /* position:absolute; */
+}
+
+.mainContent{
+  /* max-height: 90%; */
 }

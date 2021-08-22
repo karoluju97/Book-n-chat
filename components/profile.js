@@ -1,8 +1,7 @@
 import { Card } from "react-bootstrap"
 import styles from "../styles/profile.module.css"
 
-const Profile = () => {
-
+const Profile = ({ user }) => {
     return (
         <Card className={styles.profile}>
             <Card.Img src="bgImg.jpg" variant="top" className={styles.profileBanner}>
@@ -11,7 +10,7 @@ const Profile = () => {
             </Card.Img>
             <Card.Body className={styles.profileBody}>
                 <Card.Title>
-                    Zest
+                    {user.username}
                 </Card.Title>
                 <Card.Text>
                     Bio
@@ -19,7 +18,6 @@ const Profile = () => {
             </Card.Body>
         </Card>
     )
-
 }
 
 export default Profile;
