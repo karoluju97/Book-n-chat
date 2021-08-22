@@ -14,7 +14,6 @@ const Homepage = () => {
         posts: [],
         messages: []
     })
-
     const sendMessage = (e) => {
         e.preventDefault();
         let message = e.target.messaging.value;
@@ -26,12 +25,10 @@ const Homepage = () => {
         })
         e.target.messaging.value = ""
     }
-
     useEffect(() => {
         let element = document.getElementById("chat");
         element.scrollTop = element.scrollHeight;
     }, [state.messages])
-
     useEffect(() => {
         const id = localStorage.getItem("id")
         firebase.database().ref(`users/${id}`).get().then((user) => {
@@ -60,7 +57,6 @@ const Homepage = () => {
                         ...prevState,
                         messages: [...result]
                     }))
-                    console.log(result)
                 } else {
                     console.log("No data available");
                 }
@@ -82,19 +78,19 @@ const Homepage = () => {
                     <Col sm="6" className={styles.postList}>
                         <Container>
                             <PostFrom username={state.user.username}></PostFrom>
-                            {state.posts.sort((a,b)=>{
-                                return b.timestamp-a.timestamp
+                            {state.posts.sort((a, b) => {
+                                return b.timestamp - a.timestamp
                             }).map((post) => {
                                 return (
-                                    <Post key={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
+                                    <Post key={post.id} id={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
                                 )
                             })}
                         </Container>
                     </Col>
                     <Col sm="3">
                         <ListGroup className={styles.chatList} id="chat">
-                            {state.messages.sort((a,b)=>{
-                                return a.timestamp-b.timestamp
+                            {state.messages.sort((a, b) => {
+                                return a.timestamp - b.timestamp
                             }).map((message) => {
                                 return (
                                     <GlobalMessage key={message.id} text={message.text} user={message.user}>

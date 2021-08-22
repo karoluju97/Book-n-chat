@@ -1,7 +1,26 @@
 import { Card, Row, Button } from "react-bootstrap"
+import { useEffect, useState } from "react"
 import styles from "../styles/post.module.css"
+import firebase from "../firebase.js"
 
-const Post = ({ name, book, text }) => {
+const Post = ({ name, book, text, id }) => {
+
+    const [state, setState] = useState({
+        likes: 0
+    })
+    useEffect(() => {
+        firebase.database().ref(`posts/${id}/likes`).on("value", (snapshot) => {
+            if (snapshot.exists()) {
+                const value = snapshot.val()
+                setState(prevState => ({
+                    ...prevState,
+                    likes: Object.keys(value).length
+                }))
+            } else {
+                console.log("No data available");
+            }
+        })
+    }, [])
     return (
         <Card className={styles.post}>
             <Card.Header className={styles.postHeader}>
@@ -13,8 +32,12 @@ const Post = ({ name, book, text }) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={styles.postFooter}>
-                <Button className={styles.postButton}>
-                    Like
+                <Button className={styles.postButton} onClick={() => {
+                    firebase.database().ref(`posts/${id}/likes`).set({
+                        id
+                    })
+                }}>
+                    {state.likes} Likes
                 </Button>
                 <Button className={styles.postButton}>
                     Comment
