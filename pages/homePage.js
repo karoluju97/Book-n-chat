@@ -32,6 +32,17 @@ const Homepage = () => {
     useEffect(() => {
         const id = localStorage.getItem("id")
         firebase.database().ref(`users/${id}`).get().then((user) => {
+            firebase.database().ref(`users/${id}`).on("value", (snapshot) => {
+                if (snapshot.exists()) {
+                    const value = snapshot.val()                  
+                    setState(prevState => ({
+                        ...prevState,
+                        user: value
+                    }))
+                } else {
+                    console.log("No data available");
+                }
+            })
             firebase.database().ref("posts").on("value", (snapshot) => {
                 if (snapshot.exists()) {
                     const value = snapshot.val()

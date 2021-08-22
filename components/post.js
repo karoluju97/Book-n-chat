@@ -1,4 +1,4 @@
-import { Card, Row, Button } from "react-bootstrap"
+import { Card,Button } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import styles from "../styles/post.module.css"
 import firebase from "../firebase.js"

@@ -12,7 +12,8 @@ const SignUp = () => {
 
             firebase.database().ref(`users/${user.user.uid}`).set({
                 username: e.target.username.value,
-                email: e.target.email.value
+                email: e.target.email.value,
+                pFP: "pfp.jpg"
             })
             console.log(user.user)
             localStorage.setItem("id",user.user.uid)
