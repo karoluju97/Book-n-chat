@@ -1,8 +1,5 @@
-.postHeader {
-background-color:aqua;
-}
-
-.post{
-  margin-bottom: 20px;
-  border:1px solid black;
+.postList{
+  margin-top: 20px;
+  max-height:55%;
+  overflow-y: scroll;
 }

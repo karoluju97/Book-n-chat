@@ -1,5 +1,5 @@
 import { Card, Row, Button } from "react-bootstrap"
-import styles from "../styles/Home.module.css"
+import styles from "../styles/post.module.css"
 
 const Post = ({ name, book, text }) => {
     return (
@@ -12,17 +12,17 @@ const Post = ({ name, book, text }) => {
                     {text}
                 </Card.Text>
             </Card.Body>
-            <Card.Footer>
-                <Button>
+            <Card.Footer className={styles.postFooter}>
+                <Button className={styles.postButton}>
                     Like
                 </Button>
-                <Button>
+                <Button className={styles.postButton}>
                     Comment
                 </Button>
-                <Button>
+                <Button className={styles.postButton}>
                     Share
                 </Button>
-                <Button>
+                <Button className={styles.postButton}>
                     Bookmark
                 </Button>
             </Card.Footer>

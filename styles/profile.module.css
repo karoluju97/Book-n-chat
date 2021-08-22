@@ -1,0 +1,21 @@
+.profile{
+    margin-top: 20px;
+}
+
+.profileBanner{
+    height: 150px;
+}
+
+.profilePic{
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    left: 37%;
+    top: 130px;
+    border: 1px solid black;
+}
+
+.profileBody{
+    margin-top: 50px;
+}

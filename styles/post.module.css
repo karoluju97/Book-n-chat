@@ -1,0 +1,20 @@
+.postHeader{
+    margin-bottom: 10px;
+  }
+  
+  .post{
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+  
+  .postFooter{
+    justify-content: space-evenly;
+  }
+  
+  .postButton{
+    margin-left: 2px;
+    margin-right: 2px;
+  }

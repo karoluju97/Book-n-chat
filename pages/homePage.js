@@ -2,6 +2,9 @@ import { Container, Row, Col, Navbar } from "react-bootstrap"
 import firebase from "../firebase.js"
 import { useEffect, useState } from "react"
 import Post  from "../components/post.js"
+import Profile from "../components/profile.js"
+import styles from "../styles/Home.module.css"
+
 const Homepage = () => {
 
     const [state, setState] = useState({ user: { username: "" } })
@@ -27,11 +30,11 @@ const Homepage = () => {
             </Navbar>
             <Container fluid>
                 <Row style={{ }}>
-                    <Col sm="3" style={{ backgroundColor: "red" }}>
-                        Profile
+                    <Col sm="3" >
+                        <Profile></Profile>
                     </Col>
                     <Col sm="6">
-                        <Container>
+                        <Container className={styles.postList}>
                             <Post name={state.user.username} book="The Witcher" text="I hate me blah blah"></Post>
                             <Post name={state.user.username} book="The Witcher" text="I hate me blah blah"></Post>
                             <Post name={state.user.username} book="The Witcher" text="I hate me blah blah"></Post>
