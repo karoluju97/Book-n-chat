@@ -33,9 +33,10 @@ const Post = ({ name, book, text, id }) => {
             </Card.Body>
             <Card.Footer className={styles.postFooter}>
                 <Button className={styles.postButton} onClick={() => {
-                    firebase.database().ref(`posts/${id}/likes`).set({
-                        id
-                    })
+                    const userId = localStorage.getItem("id")
+                    firebase.database().ref(`posts/${id}/likes/${userId}`).set(
+                        userId
+                    )
                 }}>
                     {state.likes} Likes
                 </Button>
