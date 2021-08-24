@@ -42,7 +42,8 @@ const Profile = ({ user }) => {
             </Card.Img>
             <Card.Body className={styles.profileBody}>
                 <Card.Title>
-                    {user.username} <BiEdit onClick={show}></BiEdit>
+                    {user.username} 
+                    {/* <BiEdit onClick={show}></BiEdit> */}
                 </Card.Title>
                 <Card.Text>
                     {user.bio || ""}

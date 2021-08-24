@@ -1,5 +1,6 @@
 import firebase from "../firebase.js"
 import { useRouter } from 'next/router';
+import { Form, Navbar, Button } from "react-bootstrap"
 
 const SignUp = () => {
 
@@ -24,13 +25,20 @@ const SignUp = () => {
     }
 
     return (
-        <form onSubmit={submit}>
+        <Form onSubmit={submit}>
+            <Navbar bg="dark" variant="dark" sticky="top" style={{ margin: "0" }}>
+                <Navbar.Brand>
+                    Book N Chat
+                </Navbar.Brand>
+            </Navbar>
             <input type="text" placeholder="Username" name="username"></input>
             <input type="email" placeholder="Email" name="email"></input>
             <input type="password" placeholder="Password" name="password"></input>
             <input type="password" placeholder="Verify Password" name="verifyPassword"></input>
-            <button type="submit">Sign Up</button>
-        </form>
+            <Button type="submit">Sign Up</Button>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/#"> Already have an account? Log in here!</a>
+        </Form>
     )
 
 }
