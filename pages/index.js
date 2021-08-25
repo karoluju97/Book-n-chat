@@ -21,17 +21,21 @@ const Index = () => {
     return (
         <div className={styles.loginBody}>
             <Navbar bg="dark" variant="dark" sticky="top" style={{ margin: "0" }}>
-                <Navbar.Brand>
-                    Book N Chat
-                </Navbar.Brand>
+                <Container fluid>
+                    <Navbar.Brand>
+                        <Image src="logo.jpg" alt="" className={styles.loginAvatar}></Image>
+                    </Navbar.Brand>
+                </Container>
             </Navbar>
             <Container>
+
                 <Form onSubmit={submit} className={styles.loginBox}>
-                    <Image src="logo.jpg" alt="" className={styles.loginAvatar}></Image>
+                    <Image src="bgbook.jpg" alt="" className={styles.loginBg}></Image>
+
                     <input type="email" placeHolder="Enter email address" name="email" className={styles.loginInput}></input>
                     <input type="password" placeHolder="Enter password" name="password" className={styles.loginInput} ></input>
                     <Button type="submit" className={styles.loginButton}>Log in</Button>
-                    <a href="signUp"> Do not have an account? Sign up Here!</a>
+                    <a href="signUp"> Don't have an account? Sign up!</a>
                 </Form>
             </Container>
         </div>

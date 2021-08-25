@@ -37,7 +37,7 @@ const SignUp = () => {
             <input type="password" placeholder="Verify Password" name="verifyPassword"></input>
             <Button type="submit">Sign Up</Button>
             {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/#"> Already have an account? Log in here!</a>
+            <a href="/"> Already have an account? Log in here!</a>
         </Form>
     )
 

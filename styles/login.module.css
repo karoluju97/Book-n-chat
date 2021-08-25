@@ -1,43 +1,51 @@
 .loginBody{
     margin: 0;
     padding: 0;
-    background-color: bisque;
+    height: 100vh;
+}
+
+.loginBg{
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -999;
 }
 
 .loginBox{
+    border-radius: 5%;
     width: 320px;
-    height: 420px;
+    height: 400px;
     background-color:black;
     color: white;
-    top:50%;
-    left: 50%;
-    position: absolute;
-    transform: translateY(-50%,-50%);
+    margin-top:15%;
+    /* position: absolute; */
+    margin-left: auto;
+    /* transform: translateY(-50%,-50%); */
     box-sizing: border-box;
     padding: 70px 30px;
+    text-align: center;
 }
 .loginAvatar{
-    width:100px;
-    height: 100px;
+    width:50px;
+    height: 50px;
     border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: calc(50% - 50px);
 }
+
 .loginInput{
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     border: none;
     border-bottom: 1px solid white;
     background: transparent;
     outline: none;
+    color: white;
     height: 40px;
     font-size: 16px;
 }
 
 .loginButton{
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border: none;
     outline: none;
     background:seashell;
