@@ -1,4 +1,4 @@
-import { Container, Row, Col, Navbar, ListGroup, Form, Button } from "react-bootstrap"
+import { Container, Row, Col, ListGroup, Form, Button, Image } from "react-bootstrap"
 import firebase from "../firebase.js"
 import { useEffect, useState } from "react"
 import Post from "../components/post.js"
@@ -7,6 +7,7 @@ import styles from "../styles/Home.module.css"
 import PostFrom from "../components/postForm.js"
 import GlobalMessage from "../components/globalMessage.js"
 import { v4 as uuid } from "uuid"
+import NavBar from "../components/navBar.js"
 
 const Homepage = () => {
     const [state, setState] = useState({
@@ -73,11 +74,7 @@ const Homepage = () => {
     }, [])
     return (
         <div>
-            <Navbar bg="dark" variant="dark" sticky="top" style={{ margin: "0" }}>
-                <Navbar.Brand>
-                    Book N Chat
-                </Navbar.Brand>
-            </Navbar>
+            <NavBar></NavBar>
             <Container fluid className={styles.mainContent}>
                 <Row style={{}}>
                     <Col sm="3" >

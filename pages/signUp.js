@@ -1,6 +1,7 @@
 import firebase from "../firebase.js"
 import { useRouter } from 'next/router';
-import { Form, Navbar, Button } from "react-bootstrap"
+import { Form, Button, Container, Image } from "react-bootstrap"
+import NavBar from "../components/navBar.js"
 
 const SignUp = () => {
 
@@ -26,11 +27,7 @@ const SignUp = () => {
 
     return (
         <Form onSubmit={submit}>
-            <Navbar bg="dark" variant="dark" sticky="top" style={{ margin: "0" }}>
-                <Navbar.Brand>
-                    Book N Chat
-                </Navbar.Brand>
-            </Navbar>
+            <NavBar></NavBar>
             <input type="text" placeholder="Username" name="username"></input>
             <input type="email" placeholder="Email" name="email"></input>
             <input type="password" placeholder="Password" name="password"></input>
