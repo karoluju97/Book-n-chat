@@ -43,7 +43,7 @@ const Profile = ({ user }) => {
             <Card.Body className={styles.profileBody}>
                 <Card.Title>
                     {user.username} 
-                    {/* <BiEdit onClick={show}></BiEdit> */}
+                    <BiEdit onClick={show}></BiEdit>
                 </Card.Title>
                 <Card.Text>
                     {user.bio || ""}
@@ -57,9 +57,9 @@ const Profile = ({ user }) => {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form.Control type="text" name="pfpUrl"></Form.Control>
-                        <Form.Control type="text" name="name"></Form.Control>
-                        <Form.Control type="textarea" name="bio"></Form.Control>
+                        <Form.Control type="text" placeholder="Enter pictures URL" name="pfpUrl"></Form.Control>
+                        <Form.Control type="text" placeholder="Enter new username" name="name"></Form.Control>
+                        <Form.Control type="textarea" placeholder="Edit Bio" name="bio"></Form.Control>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button type="submit">

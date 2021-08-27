@@ -31,48 +31,45 @@ const Homepage = () => {
     }, [state.messages])
     useEffect(() => {
         const id = localStorage.getItem("id")
-        firebase.database().ref(`users/${id}`).get().then((user) => {
-            firebase.database().ref(`users/${id}`).on("value", (snapshot) => {
-                if (snapshot.exists()) {
-                    const value = snapshot.val()                  
-                    setState(prevState => ({
-                        ...prevState,
-                        user: value
-                    }))
-                } else {
-                    console.log("No data available");
-                }
-            })
-            firebase.database().ref("posts").on("value", (snapshot) => {
-                if (snapshot.exists()) {
-                    const value = snapshot.val()
-                    let result = Object.keys(value).map((key) => {
-                        return { ...value[key], id: key }
-                    });
-                    setState(prevState => ({
-                        ...prevState,
-                        posts: result,
-                        user: user.val()
-                    }))
-                } else {
-                    console.log("No data available");
-                }
-            })
-            firebase.database().ref("messages").on("value", (snapshot) => {
-                if (snapshot.exists()) {
-                    const value = snapshot.val()
-                    let result = Object.keys(value).map((key) => {
-                        return { ...value[key], id: key }
-                    });
-                    setState(prevState => ({
-                        ...prevState,
-                        messages: [...result]
-                    }))
-                } else {
-                    console.log("No data available");
-                }
-            })
+        firebase.database().ref(`users/${id}`).on("value", (user) => {
+            if (user.exists()) {
+                const value = user.val()
+                setState(prevState => ({
+                    ...prevState,
+                    user: value
+                }))
+            } else {
+                console.log("No data available");
+            }
         });
+        firebase.database().ref("posts").on("value", (snapshot) => {
+            if (snapshot.exists()) {
+                const value = snapshot.val()
+                let result = Object.keys(value).map((key) => {
+                    return { ...value[key], id: key }
+                });
+                setState(prevState => ({
+                    ...prevState,
+                    posts: result
+                }))
+            } else {
+                console.log("No data available");
+            }
+        })
+        firebase.database().ref("messages").on("value", (snapshot) => {
+            if (snapshot.exists()) {
+                const value = snapshot.val()
+                let result = Object.keys(value).map((key) => {
+                    return { ...value[key], id: key }
+                });
+                setState(prevState => ({
+                    ...prevState,
+                    messages: [...result]
+                }))
+            } else {
+                console.log("No data available");
+            }
+        })
     }, [])
     return (
         <div>
