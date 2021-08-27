@@ -7,3 +7,17 @@
 .search{
     width: 35%;
 }
+
+.logOutBut{
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+.logOutBut:hover {
+    background-color: red !important;
+}
+
+.navBar{
+    background-color: black;
+}

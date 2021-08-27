@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import styles from "../styles/post.module.css"
 import firebase from "../firebase.js"
 import { v4 as uuid } from "uuid"
+import { FiThumbsUp } from "react-icons/fi"
+import { BiCommentDots } from "react-icons/bi"
 
 const Post = ({ user, name, book, text, id }) => {
 
@@ -82,10 +84,10 @@ const Post = ({ user, name, book, text, id }) => {
                         userId
                     )
                 }}>
-                    {state.likes} Likes
+                    {state.likes} <FiThumbsUp size={20}></FiThumbsUp>
                 </Button>
                 <Button onClick={show} className={styles.postButton}>
-                    Comment
+                    <BiCommentDots size={20}></BiCommentDots>
                 </Button>
             </Card.Footer>
             <Modal show={state.showModal} onHide={close}>

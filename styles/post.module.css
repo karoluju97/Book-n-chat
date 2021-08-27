@@ -1,5 +1,7 @@
 .postHeader{
     margin-bottom: 10px;
+    background-color:black;
+    color: white;
   }
   
   .post{
@@ -7,14 +9,21 @@
     background-color: white;
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 10px;
+    border: none;
   }
   
   .postFooter{
     justify-content: space-evenly;
+    background-color: white;
   }
   
   .postButton{
-    margin-left: 2px;
-    margin-right: 2px;
+    border: none;
+    background-color: black;
+    width: 40%;
+    margin-left: 6%;
+  }
+
+  .postButton:hover,.postButton:focus{
+    background-color: red;
   }

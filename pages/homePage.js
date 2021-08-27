@@ -8,6 +8,7 @@ import PostFrom from "../components/postForm.js"
 import GlobalMessage from "../components/globalMessage.js"
 import { v4 as uuid } from "uuid"
 import NavBar from "../components/navBar.js"
+import { FiSend } from "react-icons/fi"
 
 const Homepage = () => {
     const [state, setState] = useState({
@@ -133,14 +134,14 @@ const Homepage = () => {
                         </ListGroup>
                         <Form onSubmit={sendMessage}>
                             <Row>
-                                <Col>
+                                <Col sm="10">
                                     <Form.Control type="text" name="messaging">
 
                                     </Form.Control>
                                 </Col>
-                                <Col>
-                                    <Button type="submit">
-                                        Send
+                                <Col sm="2">
+                                    <Button className={styles.sendButton} type="submit">
+                                        <FiSend></FiSend>
                                     </Button>
                                 </Col>
                             </Row>
@@ -153,7 +154,7 @@ const Homepage = () => {
                     <Profile user={state.selectedUser}></Profile>
                 </Modal.Body>
                 <Modal.Footer>
-                   <Button onClick={close}>
+                   <Button className={styles.sendButton} onClick={close}>
                        Close
                    </Button>
                 </Modal.Footer>

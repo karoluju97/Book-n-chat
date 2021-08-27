@@ -1,4 +1,11 @@
 .globalMsg{
-padding: 20px;
 border: none;
+margin-bottom: 5px;
+border-bottom: 1px solid black;
+border-radius: 0px;
+}
+
+.globalMsg:hover{
+    color: red;
+    cursor: pointer;
 }

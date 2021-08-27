@@ -1,0 +1,17 @@
+.pfBut{
+    /* left: 70%;
+    position: relative; */
+    width: 100%;
+    background-color: black;
+    border: none;
+}
+.pfBut:hover,.pfBut:focus{
+    background-color: red;
+}
+.pfInput{
+    margin-bottom: 5px;
+}
+.pForm{
+    border: none;
+    margin-bottom: 25px;
+}
