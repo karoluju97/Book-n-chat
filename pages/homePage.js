@@ -13,7 +13,8 @@ const Homepage = () => {
     const [state, setState] = useState({
         user: { username: "" },
         posts: [],
-        messages: []
+        messages: [],
+        filter: ""
     })
     const sendMessage = (e) => {
         e.preventDefault();
@@ -74,7 +75,12 @@ const Homepage = () => {
     }, [])
     return (
         <div>
-            <NavBar></NavBar>
+            <NavBar onFilter={(e) => {
+               setState(prevState => ({
+                ...prevState,
+                filter: e.target.value
+            }))
+            }}></NavBar>
             <Container fluid className={styles.mainContent}>
                 <Row style={{}}>
                     <Col sm="3" >
@@ -85,7 +91,9 @@ const Homepage = () => {
                             <PostFrom username={state.user.username}></PostFrom>
                             {state.posts.sort((a, b) => {
                                 return b.timestamp - a.timestamp
-                            }).map((post) => {
+                            })
+                            .filter(post => post.bookTitle.toLowerCase().includes(state.filter.toLowerCase()))
+                            .map((post) => {
                                 return (
                                     <Post key={post.id} id={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
                                 )
