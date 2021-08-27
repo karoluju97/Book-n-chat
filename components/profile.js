@@ -59,7 +59,7 @@ const Profile = ({ user }) => {
                     <Modal.Body>
                         <Form.Control type="text" placeholder="Enter pictures URL" name="pfpUrl"></Form.Control>
                         <Form.Control type="text" placeholder="Enter new username" name="name"></Form.Control>
-                        <Form.Control type="textarea" placeholder="Edit Bio" name="bio"></Form.Control>
+                        <Form.Control as="textarea" rows={3} placeholder="Edit Bio" name="bio"></Form.Control>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button type="submit">

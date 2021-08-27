@@ -1,12 +1,12 @@
 import { ListGroup } from "react-bootstrap";
 import styles from "../styles/chat.module.css"
 
-const GlobalMessage = ({text,user}) => {
+const GlobalMessage = ({ text, user, onClick }) => {
     return (
-        <ListGroup.Item className={styles.globalMsg}>
+        <ListGroup.Item onClick={onClick} className={styles.globalMsg}>
             {`${user.username}: ${text}`}
         </ListGroup.Item>
-        )
+    )
 
 }
 

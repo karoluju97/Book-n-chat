@@ -68,7 +68,7 @@ const Post = ({ user, name, book, text, id }) => {
     return (
         <Card className={styles.post}>
             <Card.Header className={styles.postHeader}>
-                {name} commented on {book}
+                <b>{name}</b> posted about <b>{book}</b>
             </Card.Header>
             <Card.Body>
                 <Card.Text>
@@ -86,9 +86,6 @@ const Post = ({ user, name, book, text, id }) => {
                 </Button>
                 <Button onClick={show} className={styles.postButton}>
                     Comment
-                </Button>
-                <Button className={styles.postButton}>
-                    Bookmark
                 </Button>
             </Card.Footer>
             <Modal show={state.showModal} onHide={close}>

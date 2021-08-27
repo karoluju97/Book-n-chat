@@ -1,4 +1,4 @@
-import { Container, Row, Col, ListGroup, Form, Button, Image } from "react-bootstrap"
+import { Container, Row, Col, ListGroup, Form, Button, Modal } from "react-bootstrap"
 import firebase from "../firebase.js"
 import { useEffect, useState } from "react"
 import Post from "../components/post.js"
@@ -12,9 +12,11 @@ import NavBar from "../components/navBar.js"
 const Homepage = () => {
     const [state, setState] = useState({
         user: { username: "" },
+        selectedUser: { username: "" },
         posts: [],
         messages: [],
-        filter: ""
+        filter: "",
+        showModal: false
     })
     const sendMessage = (e) => {
         e.preventDefault();
@@ -26,6 +28,18 @@ const Homepage = () => {
             timestamp: Date.now()
         })
         e.target.messaging.value = ""
+    }
+    const close = () => {
+        setState(prevState => ({
+            ...prevState,
+            showModal: false
+        }))
+    }
+    const show = () => {
+        setState(prevState => ({
+            ...prevState,
+            showModal: true
+        }))
     }
     useEffect(() => {
         let element = document.getElementById("chat");
@@ -76,10 +90,10 @@ const Homepage = () => {
     return (
         <div>
             <NavBar onFilter={(e) => {
-               setState(prevState => ({
-                ...prevState,
-                filter: e.target.value
-            }))
+                setState(prevState => ({
+                    ...prevState,
+                    filter: e.target.value
+                }))
             }}></NavBar>
             <Container fluid className={styles.mainContent}>
                 <Row style={{}}>
@@ -92,12 +106,12 @@ const Homepage = () => {
                             {state.posts.sort((a, b) => {
                                 return b.timestamp - a.timestamp
                             })
-                            .filter(post => post.bookTitle.toLowerCase().includes(state.filter.toLowerCase()))
-                            .map((post) => {
-                                return (
-                                    <Post key={post.id} user={state.user.username} id={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
-                                )
-                            })}
+                                .filter(post => post.bookTitle.toLowerCase().includes(state.filter.toLowerCase()))
+                                .map((post) => {
+                                    return (
+                                        <Post key={post.id} user={state.user.username} id={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
+                                    )
+                                })}
                         </Container>
                     </Col>
                     <Col sm="3">
@@ -106,25 +120,44 @@ const Homepage = () => {
                                 return a.timestamp - b.timestamp
                             }).map((message) => {
                                 return (
-                                    <GlobalMessage key={message.id} text={message.text} user={message.user}>
-
+                                    <GlobalMessage onClick={() => {
+                                        setState(prevState => ({
+                                            ...prevState,
+                                            selectedUser: message.user,
+                                            showModal: true
+                                        }))
+                                    }} key={message.id} text={message.text} user={message.user}>
                                     </GlobalMessage>
                                 )
                             })}
                         </ListGroup>
                         <Form onSubmit={sendMessage}>
                             <Row>
-                                <Form.Control type="text" name="messaging">
+                                <Col>
+                                    <Form.Control type="text" name="messaging">
 
-                                </Form.Control>
-                                <Button type="submit">
-                                    Send
-                                </Button>
+                                    </Form.Control>
+                                </Col>
+                                <Col>
+                                    <Button type="submit">
+                                        Send
+                                    </Button>
+                                </Col>
                             </Row>
                         </Form>
                     </Col>
                 </Row>
             </Container>
+            <Modal show={state.showModal} onHide={close}>
+                <Modal.Body>
+                    <Profile user={state.selectedUser}></Profile>
+                </Modal.Body>
+                <Modal.Footer>
+                   <Button onClick={close}>
+                       Close
+                   </Button>
+                </Modal.Footer>
+            </Modal>
         </div>)
 }
 
