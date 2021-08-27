@@ -95,7 +95,7 @@ const Homepage = () => {
                             .filter(post => post.bookTitle.toLowerCase().includes(state.filter.toLowerCase()))
                             .map((post) => {
                                 return (
-                                    <Post key={post.id} id={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
+                                    <Post key={post.id} user={state.user.username} id={post.id} name={post.username} book={post.bookTitle} text={post.description}></Post>
                                 )
                             })}
                         </Container>
