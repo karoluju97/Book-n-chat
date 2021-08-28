@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Form, Button, Container, Image } from "react-bootstrap"
 import NavBar from "../components/navBar.js"
 import styles from "../styles/login.module.css"
+import Link from "next/Link"
 
 const SignUp = () => {
 
@@ -38,7 +39,7 @@ const SignUp = () => {
                     <input type="email" placeholder="Email" name="email" className={styles.loginInput}></input>
                     <input type="password" placeholder="Password" name="password" className={styles.loginInput}></input>
                     <Button type="submit" className={styles.loginButton} >Sign Up</Button>
-                    <a href="/"> Have an account? Log in here</a>
+                    <Link href="/"> Have an account? Log in here</Link>
                 </Form>
             </Container>
         </div>
