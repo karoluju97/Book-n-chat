@@ -1,10 +1,11 @@
-import { Card, Button, Modal, Form, ListGroup } from "react-bootstrap"
+import { Card, Button, Modal, Form, ListGroup, Row, Col } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import styles from "../styles/post.module.css"
 import firebase from "../firebase.js"
 import { v4 as uuid } from "uuid"
 import { FiThumbsUp } from "react-icons/fi"
 import { BiCommentDots } from "react-icons/bi"
+import { BsTrash } from "react-icons/bs"
 
 const Post = ({ user, name, book, text, id }) => {
 
@@ -38,6 +39,10 @@ const Post = ({ user, name, book, text, id }) => {
             ...prevState,
             showModal: true
         }))
+    }
+
+    const deletePost = () => {
+        firebase.database().ref(`posts/${id}`).remove();
     }
 
     useEffect(() => {
@@ -78,17 +83,32 @@ const Post = ({ user, name, book, text, id }) => {
                 </Card.Text>
             </Card.Body>
             <Card.Footer className={styles.postFooter}>
-                <Button className={styles.postButton} onClick={() => {
-                    const userId = localStorage.getItem("id")
-                    firebase.database().ref(`posts/${id}/likes/${userId}`).set(
-                        userId
-                    )
-                }}>
-                    {state.likes} <FiThumbsUp size={20}></FiThumbsUp>
-                </Button>
-                <Button onClick={show} className={styles.postButton}>
-                    <BiCommentDots size={20}></BiCommentDots>
-                </Button>
+                <Row>
+                    <Col>
+                        <Button className={styles.postButton} onClick={() => {
+                            const userId = localStorage.getItem("id")
+                            firebase.database().ref(`posts/${id}/likes/${userId}`).set(
+                                userId
+                            )
+                        }}>
+                            {state.likes} <FiThumbsUp size={20}></FiThumbsUp>
+                        </Button>
+                    </Col>
+                    <Col>
+                        <Button onClick={show} className={styles.postButton}>
+                            <BiCommentDots size={20}></BiCommentDots>
+                        </Button>
+                    </Col>
+                    {
+                        user === name &&
+                        <Col>
+                            <Button onClick={deletePost} className={styles.postButton}>
+                                <BsTrash size={20}></BsTrash>
+                            </Button>
+                        </Col>
+                    }
+
+                </Row>
             </Card.Footer>
             <Modal show={state.showModal} onHide={close}>
                 <Modal.Header>

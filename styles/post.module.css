@@ -20,8 +20,8 @@
   .postButton{
     border: none;
     background-color: black;
-    width: 40%;
-    margin-left: 6%;
+    width: 100%;
+    /* margin-left: 6%; */
   }
 
   .postButton:hover,.postButton:focus{
