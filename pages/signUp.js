@@ -2,6 +2,7 @@ import firebase from "../firebase.js"
 import { useRouter } from 'next/router';
 import { Form, Button, Container, Image } from "react-bootstrap"
 import NavBar from "../components/navBar.js"
+import styles from "../styles/login.module.css"
 
 const SignUp = () => {
 
@@ -18,7 +19,7 @@ const SignUp = () => {
                 pFP: "pfp.jpg"
             })
             console.log(user.user)
-            localStorage.setItem("id",user.user.uid)
+            localStorage.setItem("id", user.user.uid)
             router.push("/homePage")
         }).catch((err) => {
             console.log(err)
@@ -26,16 +27,21 @@ const SignUp = () => {
     }
 
     return (
-        <Form onSubmit={submit}>
+
+
+        <div className={styles.loginBody}>
             <NavBar></NavBar>
-            <input type="text" placeholder="Username" name="username"></input>
-            <input type="email" placeholder="Email" name="email"></input>
-            <input type="password" placeholder="Password" name="password"></input>
-            <input type="password" placeholder="Verify Password" name="verifyPassword"></input>
-            <Button type="submit">Sign Up</Button>
-            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-            <a href="/"> Already have an account? Log in here!</a>
-        </Form>
+            <Container>
+                <Form onSubmit={submit} className={styles.loginBox}>
+                    <Image src="bgbook.jpg" alt="" className={styles.loginBg}></Image>
+                    <input type="text" placeholder="Username" name="username" className={styles.loginInput}></input>
+                    <input type="email" placeholder="Email" name="email" className={styles.loginInput}></input>
+                    <input type="password" placeholder="Password" name="password" className={styles.loginInput}></input>
+                    <Button type="submit" className={styles.loginButton} >Sign Up</Button>
+                    <a href="/"> Have an account? Log in here</a>
+                </Form>
+            </Container>
+        </div>
     )
 
 }
