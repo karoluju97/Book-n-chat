@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Form, Button, Container, Image } from "react-bootstrap"
 import NavBar from "../components/navBar.js"
 import styles from "../styles/login.module.css"
-import Link from "next/Link"
+import Link from "next/link"
 
 const SignUp = () => {
 

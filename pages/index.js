@@ -4,7 +4,7 @@ import styles from "../styles/login.module.css"
 import { Form, Button, Container, Image } from "react-bootstrap"
 import { SignUp } from "../pages/signUp"
 import NavBar from "../components/navBar.js"
-import Link from "next/Link"
+import Link from "next/link"
 
 const Index = () => {
 
